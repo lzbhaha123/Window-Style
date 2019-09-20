@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="8cf65jqdDCUjno3795tzYb9jfWeKZjOBTStHXsUm">
+    <title>Clover Shed</title>
+    <link href="css_windows/css.css" rel="stylesheet" />
+    <script src="js_windows/angular.min.js"></script>
+    <script src="js_windows/control.js"></script>
+</head>
+<body ng-app="homePage">
+    <div class="main_div" ng-controller="homePageController">
+    <main class="desktop" id="desktop">
+        <ul>
+            <li><a><div ng-click="folder1(1)"><img src="img_windows/folder.png" /><p>Projects</p></div></a></li>
+            <li><a><div ng-click="folder1(2)"><img src="img_windows/folder.png" /><p>Tutorial</p></div></a></li>
+        </ul>
+        
+        <div class="folder_window" id="folder_window1">
+            
+            <div class="folder_head" drag><img src="img_windows/folder.png" /><p>Project</p></div>
+            <div class="control"><div class="minimize"  ng-click="minimize(1)">－</div><div class="maxmize">⼞</div><div class="close" ng-click="close(1)">X</div></div>
+            <div class="ban_flow"></div>
+            <div class="delimiter"></div>
+            <div class="search"><input type="text" ng-model="key_project" /></div> <div class="delimiter"></div>
+            <div class="folder_content">
+                <div class="left_colum">
+                    <ul>
+                        <li><a><div ng-click="folder1(1)"><img src="img_windows/folder.png" /><div>Projects</div></div></a></li>
+                        <li><a><div ng-click="folder1(2)"><img src="img_windows/folder.png" /><div>Tutorial</div></div></a></li>
+                    </ul>
+                </div>
+                <div class="right_colum"><table>
+                <tr><td>Name</td><td>Date modified</td><td>Type</td><td>Size</td></tr>
+                <!--<tr><td>Lotto</td><td>8/16/2019 2:17PM</td><td>File</td><td>3 KB</td></tr>-->
+                <tr ng-repeat="file in files_project | filter: {title: key_project} "><td>{{file.title}}</td><td>{{file.date}}</td><td>{{file.type}}</td><td>{{file.size}}</td></tr>
+                
+                
+                </table></div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="folder_window" id="folder_window2">
+            
+            <div class="folder_head" drag><img src="img_windows/folder.png" /><p>Tutorial</p></div>
+            <div class="control"><div class="minimize"  ng-click="minimize(2)">－</div><div class="maxmize">⼞</div><div class="close" ng-click="close(2)">X</div></div>
+            <div class="ban_flow"></div>
+            <div class="delimiter"></div>
+            <div class="search"><input type="text" ng-model="key_tutorial" /></div> <div class="delimiter"></div>
+            <div class="folder_content">
+                <div class="left_colum">
+                    <ul>
+                        <li><a><div ng-click="folder1(1)"><img src="img_windows/folder.png" /><div>Projects</div></div></a></li>
+                        <li><a><div ng-click="folder1(2)"><img src="img_windows/folder.png" /><div>Tutorial</div></div></a></li>
+                    </ul>
+                </div>
+                <div class="right_colum"><table>
+                <tr><td>Name</td><td>Date modified</td><td>Type</td><td>Size</td></tr>
+                <tr ng-repeat="file in files_tutorial | filter: {title: key_tutorial}"><td>{{file.title}}</td><td>{{file.date}}</td><td>{{file.type}}</td><td>{{file.size}}</td></tr>
+                
+                </table></div>
+                
+            </div>
+        </div>
+        
+        
+        
+    </main>
+    <footer class="footer">
+
+    <div class="start_button"><img src="img_windows/start.png" /></div><input type="text" class="search_bar" />
+    <div class="task_bar"></div>
+
+    <div class="time_panel"><div class="language_chose">EN</div><div class="current_time"><p id="current_time">9:48 PM</p> <p id="current_data">8/16/2019</p></div></footer>
+    </div>  
+</body>
+<script>
+    
+    
+    
+    var applications = [];
+    
+    var task_bar = angular.element(document.querySelector('.task_bar'))[0];
+    angular.module('homePage',[]).controller('homePageController',['$scope',function($scope){
+        $scope.files_tutorial = [
+            { 
+                title: 'BlobNet',
+                date: '9/07/2019 5:39PM',
+                type:'Application',
+                size:'97 KB'
+            }
+        ];
+        $scope.files_project = [
+            { 
+                title: 'GuaGuaJS',
+                date: '8/16/2019 2:17PM',
+                type:'File',
+                size:'3 KB'
+            }, {
+                title: 'Balance ball',
+                date: '8/30/2019 8:55AM',
+                type:'Shortcut',
+                size:'2 KB'
+            }, {
+                title: 'JustTalk',
+                date: '9/19/2019 10:38PM',
+                type:'Application',
+                size:'220 KB'
+            }
+        ];
+        
+        
+        $scope.folder1 = function(id){
+             var folder_window = angular.element(document.querySelector('#folder_window'+id))[0];
+             folder_window.style.display = "block";
+            
+             application = new Application("img_windows/folder.png",folder_window,folder_window.id);
+             var elementIsExist = false;
+             for(var i =0;i<applications.length;i++){
+                if(applications[i].tag==folder_window){
+                  elementIsExist = true;
+                }
+              }
+              if(!elementIsExist){
+                applications.push(application);
+              }else{
+                elementIsExist = false;
+              }
+             addToolsbar(applications,task_bar,$scope);
+        };                                                           
+        $scope.close = function(id){
+            var folder_window = angular.element(document.querySelector('#folder_window'+id))[0];
+             folder_window.style.display = "none";
+             RemoveArray(applications,folder_window);
+             addToolsbar(applications,task_bar,$scope);
+        };
+        $scope.minimize = function(id){
+            var folder_window = angular.element(document.querySelector('#folder_window'+id))[0];
+            folder_window.style.display = "none";
+        };
+    }])
+    .directive('drag',function($document){
+        return function(scope, element, attr) {
+            var startX = 0;
+            var startY = 0;
+            var x = 0;
+            var y = 0; 
+            var container = null; 
+              
+            element.css({
+              position: 'relative',
+              cursor: 'pointer'
+            });
+            
+            element.on('mousedown', function(event) {
+              // Prevent default dragging of selected content
+              event.preventDefault();
+              
+              $document.on('mousemove', mousemove);
+              $document.on('mouseup', mouseup); 
+              container = attr.$$element.parent();
+              
+              settingIndexZ(applications,container[0]);
+            });
+        
+            function mousemove(event) {
+              y = event.screenY - container[0].offsetHeight*0.15;
+              x = event.screenX - container[0].offsetWidth/2;
+              
+              
+              if(event.clientY+container[0].offsetHeight<window.innerHeight&&event.clientY>0){
+                container.css({
+                    top: y + 'px'
+                });
+              }
+              
+              if(event.clientX+container[0].offsetWidth/2<window.innerWidth&&event.clientX>container[0].offsetWidth/2 ){
+                container.css({
+                    left: x + 'px'
+                });
+              }
+            }
+        
+            function mouseup() {
+              $document.unbind('mousemove', mousemove);
+              $document.unbind('mouseup', mouseup);
+            }
+        };
+    });
+
+    
+    
+</script>
+</html>

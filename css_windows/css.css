@@ -1,0 +1,49 @@
+*{margin: 0; padding: 0; list-style: none;text-decoration: none}
+body{ background-image: url("../img_windows/img2.jpg");background-size: cover; }
+footer{ background-color: #ABABAB;border-top: 1px solid #CDCDCD;  width: 100%;}
+.ban_flow{clear: both}
+.start_button{ padding: 5px 12px;float: left}
+.start_button img{width: 25px;}
+.search_bar{ height: 30px; border: 0; padding: 5px; width: 23%;float: left}
+.task_bar{width: 58%;float: left;height: 35px; margin-left: 2%}
+.time_panel{float: right;margin: 3px 5px; height: 29px;  border-left: #565656 solid 1px; }
+.time_panel .language_chose{height: 19px;padding: 5px 10px;  margin: 0 1px; border-left: #565656 solid 1px;float: left}
+.time_panel .current_time{font-size: 13px; float:right; text-align: center;padding: 0px 10px; }
+main{    flex: 1; }
+.main_div{height: 100vh; flex-direction: column;    display: flex;}
+.desktop ul li{ margin:13px 10px;    text-align: center; width: fit-content;  padding: 5px 7px}
+.desktop ul li:hover{   padding: 4px 6px ; border: 1px solid #ABABAB}
+.desktop ul li a div p{margin-top:-5px; color: #ffffff;  margin-top:-5px;}
+.desktop ul li a div img{width: 40px}
+.folder_window{ position: absolute; height: 500px; width: 75%;  left: 15%; top: 80px ; background: #ffffff; border:1px solid #ffffff ; display: none; border: 1px solid #898989}
+.folder_window .folder_head{padding:3px 5px; float: left; width: 80%}
+.folder_window .folder_head img{ width: 20px; float: left}
+.folder_window .folder_head p{float: left; margin-left: 5px; padding-left:10px; border-left:1px solid #ABABAB  }
+.folder_window .control{float:right}
+.folder_window .control div{padding: 2px 0px; width: 35px; text-align: center;float: left}
+.folder_window .control .maxmize{ padding: 0px 0px;}
+.folder_window .control .minimize:hover,.folder_window .control .maxmize:hover{ background-color: #AAAAAA}
+.folder_window .control .close:hover{ background-color: #FF3333; color: #FFFFFF}
+.folder_window .delimiter{width: 100%; border-bottom: 1px solid #CBCBCB;clear: both;}
+.folder_window .folder_content{}
+.folder_window .folder_content .left_colum{float:left;width: 24%; border-right: 1px solid #CBCBCB;}
+.folder_window .folder_content .left_colum ul{ margin-top: 24px}
+.folder_window .folder_content .left_colum ul li{ margin: 0; padding: 7px 5px; clear: both ; width: 96%}
+.folder_window .folder_content .left_colum ul li:hover{ background: #AAAAAA}
+.folder_window .folder_content .left_colum ul li a div img{ float: left; width: 15px; margin: 1px 5px 0px }
+.folder_window .folder_content .left_colum ul li a div div{text-align: left;}
+.folder_window .folder_content .right_colum table{ margin: 0px 5px auto 5px;width: 100%}
+.folder_window .folder_content .right_colum table tr td{ padding-left: 5px;  }
+.folder_window .folder_content .right_colum table tr td{ padding-bottom: 5px }
+.folder_window .folder_content .right_colum table tr td:nth-child(1){ width: 30%}
+.folder_window .folder_content .right_colum table tr td:nth-child(2){ width: 20%; color: #999999}
+.folder_window .folder_content .right_colum table tr td:nth-child(3){ width: 10%; color: #999999}
+.folder_window .folder_content .right_colum table tr td:nth-child(4){ width: 10%; color: #999999}
+.folder_window .folder_content .right_colum table tr:nth-child(1) td{ border-right: 1px solid #CBCBCB; color: #000000}
+.folder_window .folder_content .right_colum{float:left;width: 75%; }
+.folder_window .search{  width: 100%; height: 30px}
+.folder_window .search input{ float: right; margin-right: 10px; margin-top: 5px }
+.task_bar div{ float: left; padding: 5px 10px}
+.task_bar div img{ width:25px; }
+.task_bar div:hover{ padding: 5px 10px 2px; border-bottom: solid 3px #000055}
+
