@@ -68,12 +68,25 @@
             </div>
         </div>
         
-        
-        
+        <div class="quick_Access_panel" >
+            <ul>
+                <li ng-repeat="file in files_search | filter: {title: key_search}"><a><div><img src="img_windows/folder.png" /><div>{{file.title}}</div><p class="ban_flow"></p></div></a></li>
+            
+            </ul>
+        </div>
+        <div class="start_panel">
+            <div class="left_column"><div class="systomctl"><img src="img_windows/shut.png"></div></div>
+            <div class="right_column"><table><tr>
+            <td><img src="img_windows/ball.png"><p>Balance Ball</p></td>
+            <td><img src="img_windows/justtalk.png"><p>Just Talk</p></td>
+            <td><img src="img_windows/guagua.png"><p>GuaguaJS</p></td>
+            <td><img src="img_windows/blob.png"><p>Blob Net</p></td>
+            </tr></table></div>
+        </div>
     </main>
     <footer class="footer">
 
-    <div class="start_button"><img src="img_windows/start.png" /></div><input type="text" class="search_bar" />
+    <div class="start_button" ng-click="startpanel()"><img src="img_windows/start.png" /></div><input id="global_search_bar" ng-change="type_search()" type="text" class="search_bar" ng-model="key_search" />
     <div class="task_bar"></div>
 
     <div class="time_panel"><div class="language_chose">EN</div><div class="current_time"><p id="current_time">9:48 PM</p> <p id="current_data">8/16/2019</p></div></footer>
@@ -87,6 +100,30 @@
     
     var task_bar = angular.element(document.querySelector('.task_bar'))[0];
     angular.module('homePage',[]).controller('homePageController',['$scope',function($scope){
+        $scope.files_search = [
+            { 
+                title: 'GuaGuaJS',
+                date: '8/16/2019 2:17PM',
+                type:'File',
+                size:'3 KB'
+            }, {
+                title: 'Balance ball',
+                date: '8/30/2019 8:55AM',
+                type:'Shortcut',
+                size:'2 KB'
+            }, {
+                title: 'JustTalk',
+                date: '9/19/2019 10:38PM',
+                type:'Application',
+                size:'220 KB'
+            },  { 
+                title: 'BlobNet',
+                date: '9/07/2019 5:39PM',
+                type:'Application',
+                size:'97 KB'
+            }                     
+        ];
+        
         $scope.files_tutorial = [
             { 
                 title: 'BlobNet',
@@ -113,8 +150,30 @@
                 size:'220 KB'
             }
         ];
-        
-        
+        $scope.startpanel = function(){
+            var start_panel = angular.element(document.querySelector('.start_panel'))[0];
+            if(start_panel.style.display=="block"){
+                start_panel.style.display = "none";
+                
+            }else{
+                
+                start_panel.style.display = "block";
+            }
+            
+        }
+        $scope.type_search = function(){
+            var global_search_bar = angular.element(document.querySelector('#global_search_bar'))[0];
+            var quick_Access_panel = angular.element(document.querySelector('.quick_Access_panel'))[0];
+            //console.log(global_search_bar.value);
+            if(global_search_bar.value==""){
+                quick_Access_panel.style.display = "none";
+                
+            }else{
+                
+                quick_Access_panel.style.display = "block";
+            }
+            
+        }
         $scope.folder1 = function(id){
              var folder_window = angular.element(document.querySelector('#folder_window'+id))[0];
              folder_window.style.display = "block";
